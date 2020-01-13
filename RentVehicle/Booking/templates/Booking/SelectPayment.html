@@ -1,0 +1,20 @@
+{% extends "Booking/renterbooking_base.html" %}
+
+{% block booking %}
+
+<div class="jumbotron">
+  <h1><font color = "black">Kindly Select The Payment Method</font></h1>
+  <a href="{%url 'Booking:CardPayment' pk=pk%}">
+    <button class="btn btn-primary btn-large" type="button" name="btn btn-success">
+      Pay by Card
+    </button>
+  </a>
+  <a href="{%url 'Booking:CheckPayment' pk=pk%}">
+    <button class="btn btn-primary btn-large" type="button" name="btn btn-success">
+      Pay By Check
+    </button>
+  </a>
+
+</div>
+
+{% endblock %}

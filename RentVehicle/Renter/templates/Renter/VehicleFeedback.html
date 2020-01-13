@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% extends "Renter/renter_base.html" %}
+{% load bootstrap3 %}
+
+  {% block renter %}
+  <img src="{{BookingDetails.vehicle.image.url}}" alt="" height="250" width="300">
+  <h4>{{BookingDetails.vehicle.make.make}} {{BookingDetails.vehicle.model.makemodel}}</h4>
+  <form method="POST" action="{% url 'Renter:RenterFeedback' VehicleRegistrationNumber=BookingDetails.vehicle.VehicleRegistrationNumber pk=BookingDetails.pk%}" id="groupForm">
+  	{% csrf_token %}
+  	{% bootstrap_form form %}
+    {% buttons %}
+  		<button type="submit" class="btn btn-primary btn-large">Submit</button>
+  	{% endbuttons %}
+  </form>
+{% endblock %}

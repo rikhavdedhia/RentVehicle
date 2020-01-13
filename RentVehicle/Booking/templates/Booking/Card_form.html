@@ -1,0 +1,15 @@
+{% extends "Booking/renterbooking_base.html" %}
+{% load bootstrap3 %}
+
+{% block booking %}
+<div class="container">
+  <h1>Payment</h1>
+  <form method="POST" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+      <button type="submit" class="btn btn-primary">Pay</button>
+    {% endbuttons %}
+  </form>
+</div>
+{% endblock %}

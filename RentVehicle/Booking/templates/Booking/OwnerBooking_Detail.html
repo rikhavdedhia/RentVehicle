@@ -1,0 +1,30 @@
+{% extends "Booking/ownerbooking_base.html" %}
+
+  {% block booking %}
+
+
+      <h1>Following is the details of your booking</h1>
+      <div>
+        <center><img src="{{booking.vehicle.image.url}}" alt="" height="400" width="600"></center>
+        
+        <h2>Car Name: - {{booking.vehicle.make.make}}</h2>
+        <h2>Car Model: - {{booking.vehicle.model.makemodel}}</h2>
+        <h4>Booking Date: - {{booking.bookingDate}}</h4>
+        {% if booking.negotiationRequest %}
+          <h4>Negotiation price: - {{booking.negotiationPrice}}</h4>
+        {% else %}
+          <h4>Booking price: - {{booking.price}}</h4>
+        {% endif %}
+        <p></p>
+        <h4>Request Status: - {{booking.requestStatus}}</h4>
+        <h4>Booking Status: - {{booking.bookingStatus}}</h4>
+      {% if feedBackGiven %}
+        <h4>Feedback</h4>
+        <a href="{% url "Owner:OwnerFeedback" VehicleRegistrationNumber=booking.vehicle.VehicleRegistrationNumber pk=booking.pk%}"><input type="submit" name="" value="Give Feedback"></a>
+      {% else %}
+        <h3>Feedback Given is</h3>
+        <h4>Rating: - {{feedback.rating}}</h4>
+        <h4>Description: - {{feedback.description}}</h4>
+      {% endif %}
+      </div>
+  {% endblock %}

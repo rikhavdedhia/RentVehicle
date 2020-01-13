@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--signup box-->
+<p style="margin-top: 150px;">
+<div class="jumbotron">
+  <font style="font-size:50px;" color = "black">Sign Up as Renter or Owner</font>
+  <p></p>
+  <a href="{%url 'Account:RenterSignUp'%}">
+    <button class="btn btn-primary btn-large" style="margin:5px;" type="button" name="btn btn-primary">
+      Renter
+    </button>
+  </a>
+  <a href="{%url 'Account:OwnerSignUp'%}">
+    <button class="btn btn-primary btn-large" style="margin:50px;" type="button" name="btn btn-primary">
+      Owner
+    </button>
+  </a>
+  </div>
+</p>
+
+{% endblock %}

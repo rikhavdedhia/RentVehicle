@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+<!--welcome box little bit down-->
+
+{% block content %}
+<p style="margin-top: 150px;">
+  <div class="jumbotron">
+    <font style="font-size:70px;" color = "Black">Welcome to RentVehicle!</font>
+    <p style="margin-top: 80px;"></p>
+      <form method="POST">
+        {% csrf_token %}
+        {{error}}
+        <font color = "black">{{form.as_p}}</font>
+        <input class="btn btn-primary btn-large" type="submit" name="" value="Submit">
+
+      </form>
+    </p>
+  </div>
+</p>
+
+{% endblock %}

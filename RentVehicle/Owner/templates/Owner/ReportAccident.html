@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends "Owner/owner_base.html" %}
+{% load bootstrap3 %}
+
+  {% block ownervehicles %}
+  <center><img src="{{vehicle.image.url}}" alt="" height="400" width="600"></center>
+  
+  <h4>{{vehicle.make.make}} {{vehicle.model.makemodel}}</h4>
+  <form method="POST" action="{% url 'Owner:ReportAccident' pk=vehicle.pk%}" id="groupForm">
+  	{% csrf_token %}
+  	{% bootstrap_form form %}
+    {% buttons %}
+    <center><button type="submit" class="btn btn-primary btn-large">Submit</button></center>
+  		
+  	{% endbuttons %}
+  </form>
+{% endblock %}

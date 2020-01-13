@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% extends "Owner/owner_base.html" %}
+{% load bootstrap3 %}
+
+  {% block ownervehicles %}
+  <img src="{{BookingDetails.vehicle.image.url}}" alt="" height="250" width="300">
+  <h4>{{BookingDetails.vehicle.make.make}} {{BookingDetails.vehicle.model.makemodel}}</h4>
+  <form method="POST" action="{% url 'Owner:OwnerFeedback' VehicleRegistrationNumber=BookingDetails.vehicle.VehicleRegistrationNumber pk=BookingDetails.pk%}" id="groupForm">
+  	{% csrf_token %}
+  	{% bootstrap_form form %}
+    {% buttons %}
+  		<button class="btn btn-primary btn-large" type="submit" class="btn btn-primary btn-large">Submit</button>
+  	{% endbuttons %}
+  </form>
+{% endblock %}

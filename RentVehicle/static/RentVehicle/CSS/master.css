@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  overflow: scroll;
+  background-image: url("img1.jpg");
+  background-size: cover;
+  color:white;
+}
+#List_Table{
+  background-color: #BEBEBE;
+  align-items: center;
+  margin: 0px 25% 10px 25%;
+}
+
+.filter_form{
+  border: 2px solid white;
+  background-color: #BEBEBE;
+}
+
+#List_Table_Detail{
+  width: 300px;
+}
+
+.BookingDetails{
+  align-items: center;
+  margin: 0px 35% 10px 35%;
+}
+
+.rikhav{
+  border: 1px solid white;
+  background-color: #BEBEBE;
+  margin: 0px 0px 10px 0px;
+}

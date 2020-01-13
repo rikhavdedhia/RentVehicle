@@ -1,0 +1,47 @@
+{% extends "Booking/renterbooking_base.html" %}
+{% load bootstrap3 %}
+<!--booking form renter side-->
+{% block booking %}
+<div class="container">
+	<p></p>
+	<center><h2 style="font-size:50px;">Booking Details</h2></center><p></p>
+		<center>
+			<img src="{{vehicle.image.url}}" alt="" height="400" width="600">
+		</center>
+	
+	<p></p><p></p>
+	<h1>{{vehicle.make.make}} {{vehicle.model.makemodel}}</h1>
+	<p></p><p></p>
+  
+  <form method="POST" action="{% url 'Booking:CreateBooking' VehicleRegistrationNumber=VRnum pk=VRid%}" id="groupForm">
+  	{% csrf_token %}
+		{% if form.errors %}
+	    {% for field in form %}
+	        {% for error in field.errors %}
+								{% if error != "This field is required."%}
+								<div class="row">
+									<div class="col-lg-4 boxy">
+										<div class="alert alert-danger">
+		                	<strong>{{ error|escape }}</strong>
+			            	</div>
+									</div>
+								</div>
+								{% endif %}
+	        {% endfor %}
+	    {% endfor %}
+			{% endif %}
+  	<h3>Booking Date : {{form.bookingDate}}</h3>
+		<h3><input type="checkbox" onchange="document.getElementById('addDriver').disabled = !this.checked;"> Add Driver</h3>
+		<fieldset disabled id="addDriver">
+			<h3>Additional Driver Name: {{form.additionalDriverName}}</h3>
+			<h3>Additional Driver License Number : {{form.additionalDriverLicense}}</h3>
+		</fieldset>
+		<h3><input  name = 'negotiate' type="checkbox" onchange="document.getElementById('nego').disabled = !this.checked;"> Negotiate</h3>
+		<fieldset disabled id="nego">
+			<h3>Negotiation price: {{form.negotiationPrice}}</h3>
+		</fieldset>
+		<p></p><p></p><p></p>
+  		<button type="submit" class="btn btn-primary btn-large">Create</button>
+  </form>
+</div>
+{% endblock %}

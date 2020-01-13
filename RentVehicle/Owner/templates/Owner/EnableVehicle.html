@@ -1,0 +1,99 @@
+{% extends "Owner/owner_base.html" %}
+
+{% block Navigation %}
+	<a class="nav-item nav-link" href="{% url 'Owner:CreateVehicle' %}" class="btn btn-simple">Add Vehicle</a>
+{% endblock %}
+
+  {% block ownervehicles %}
+
+
+      <h1>Following is the details of your Vehicle</h1>
+
+			<img src="{{vehicle_detail.image.url}}" alt="" height="250" width="300">
+
+      <table>
+        <tr>
+          <td></td>
+          <td>
+            <p>Make : {{vehicle_detail.make.make}}</p>
+          </td>
+          <td> <p>      </p> </td>
+          <td>
+            <p>Model : {{vehicle_detail.model.makemodel}}</p>
+          </td>
+        </tr>
+
+          <tr>
+            <td></td>
+            <td>
+              <p>Vehicle Registration Number : {{vehicle_detail.VehicleRegistrationNumber}}</p>
+            </td>
+            <td> <p>      </p> </td>
+
+            <td>
+              <p>Style : {{vehicle_detail.style.style}}</p>
+            </td>
+          </tr>
+
+            <tr>
+              <td></td>
+              <td>
+                <p>Year : {{vehicle_detail.year}}</p>
+              </td>
+              <td> <p>      </p> </td>
+
+              <td>
+                <p>Color : {{vehicle_detail.color.color}}</p>
+              </td>
+            </tr>
+
+              <tr>
+                <td></td>
+                <td>
+                  <p>Price : {{vehicle_detail.price}}</p>
+                </td>
+                <td> <p>      </p> </td>
+
+                <td>
+                  <p>Security Deposit : {{vehicle_detail.securityDeposit}}</p>
+                </td>
+              </tr>
+
+                <tr>
+                  <td></td>
+                  <td>
+                    <p>Insurance : {{vehicle_detail.insurance}}</p>
+                  </td>
+                  <td> <p>      </p> </td>
+
+                  <td>
+                    <p>EZpass : {{vehicle_detail.EZpass}}</p>
+                  </td>
+                </tr>
+
+                  <tr>
+                    <td></td>
+                    <td>
+                      <p>Description : {{vehicle_detail.description}}</p>
+                    </td>
+                    <td> <p>      </p> </td>
+
+                    <td>
+                      <p>Terms and Conditions : {{vehicle_detail.TermsAndConditions}}</p>
+                    </td>
+                  </tr>
+
+                    <tr>
+                      <td></td>
+                      <td>
+                        <p>Rating : {{vehicle_detail.rating}}</p>
+                      </td>
+                      <td> <p>      </p> </td>
+
+                    </tr>
+      </table>
+			<form method="POST" action="{% url 'Owner:EnableVehicle' pk=vehicle_detail.pk%}" id="groupForm">
+		  	{% csrf_token %}
+		  	<button type="submit" class="btn btn-primary btn-large">Get the vehicle back on road?</button>
+		  </form>
+			{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block Navigation %}
+	<a class="nav-item nav-link" href="{% url "Owner:RequestList" %}" class="btn btn-simple">Requests</a>
+	<a class="nav-item nav-link" href="{% url "Booking:OwnerBookingList" %}" class="btn btn-simple">Booking</a>
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		{% block ownervehicles %}{% endblock %}
+	</div>
+{% endblock %}

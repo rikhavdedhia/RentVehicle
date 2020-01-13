@@ -1,0 +1,99 @@
+{% extends "Owner/owner_base.html" %}
+
+{% block Navigation %}
+	<a class="nav-item nav-link" href="{% url 'Owner:CreateVehicle' %}" class="btn btn-simple">Add Vehicle</a>
+{% endblock %}
+
+  {% block ownervehicles %}
+
+
+      <h1>Following is the details of your Vehicle</h1>
+
+			<center><img src="{{vehicle_detail.image.url}}" alt="" alt="" height="400" width="600">
+      </center>
+      <p style="margin-top: 20px;"></p>
+      <table width="1200">
+        <tr>
+          <td></td>
+          <td>
+            <p style="font-size:30px;">Make : {{vehicle_detail.make.make}}</p>
+          </td>
+          <td> <p>      </p> </td>
+          <td>
+            <p style="font-size:30px;">Model : {{vehicle_detail.model.makemodel}}</p>
+          </td>
+        </tr>
+
+          <tr>
+            <td></td>
+            <td>
+              <p style="font-size:30px;">Vehicle Registration Number : {{vehicle_detail.VehicleRegistrationNumber}}</p>
+            </td>
+            <td> <p>      </p> </td>
+
+            <td>
+              <p style="font-size:30px;">Style : {{vehicle_detail.style.style}}</p>
+            </td>
+          </tr>
+
+            <tr>
+              <td></td>
+              <td>
+                <p style="font-size:30px;">Year : {{vehicle_detail.year}}</p>
+              </td>
+              <td> <p>      </p> </td>
+
+              <td>
+                <p style="font-size:30px;">Color : {{vehicle_detail.color.color}}</p>
+              </td>
+            </tr>
+
+              <tr>
+                <td></td>
+                <td>
+                  <p style="font-size:30px;">Price : {{vehicle_detail.price}}</p>
+                </td>
+                <td> <p>      </p> </td>
+
+                <td>
+                  <p style="font-size:30px;">Security Deposit : {{vehicle_detail.securityDeposit}}</p>
+                </td>
+              </tr>
+
+                <tr>
+                  <td></td>
+                  <td>
+                    <p style="font-size:30px;">Insurance : {{vehicle_detail.insurance}}</p>
+                  </td>
+                  <td> <p>      </p> </td>
+
+                  <td>
+                    <p style="font-size:30px;">EZpass : {{vehicle_detail.EZpass}}</p>
+                  </td>
+                </tr>
+
+                  <tr>
+                    <td></td>
+                    <td>
+                      <p style="font-size:30px;">Description : {{vehicle_detail.description}}</p>
+                    </td>
+                    <td> <p>      </p> </td>
+
+                    <td>
+                      <p style="font-size:30px;">Terms and Conditions : {{vehicle_detail.TermsAndConditions}}</p>
+                    </td>
+                  </tr>
+
+                    <tr>
+                      <td></td>
+                      <td>
+                        <p style="font-size:30px;">Rating : {{vehicle_detail.rating}}</p>
+                      </td>
+                      <td> <p>      </p> </td>
+
+                    </tr>
+      </table>
+			<a href="{% url "Owner:ReportAccident" pk=vehicle_detail.pk%}"><input type="submit" class="btn btn-primary btn-large" name="" value="Report Accident"></a>
+
+
+  {% endblock %}

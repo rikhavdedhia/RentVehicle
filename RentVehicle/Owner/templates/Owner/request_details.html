@@ -1,0 +1,49 @@
+{% extends "Owner/owner_base.html" %}
+<!--vegicle detail owner side //request side-->
+{% load bootstrap3 %}
+
+{% block Navigation %}
+	<a class="nav-item nav-link" href="{% url 'Owner:CreateVehicle' %}" class="btn btn-simple">Add Vehicle</a>
+{% endblock %}
+
+{% block ownervehicles %}
+<div style="text-align:center;">
+	<h1>Following is the details of your Request</h1>
+  <center><img src="{{booking.vehicle.image.url}}" alt="" height="400" width="600"></center>
+
+  <h3>Car Name: - {{booking.vehicle.make.make}}</h3>
+  <h3>Car Model: - {{booking.vehicle.model.makemodel}}</h3>
+  <h5>{{booking.bookingDate}}</h5>
+  <h5>Booking price: - {{booking.price}}</h5>
+  <h5>Request Status: - {{booking.requestStatus}}</h5>
+  <h5>Booking Status: - {{booking.bookingStatus}}</h5>
+
+  <form action="{% url "Owner:RequestDetails" pk=booking.pk%}" method="post">
+
+    {% csrf_token %}
+		<div class="row" >
+			<div class="col-lg-4 boxy"></div>
+			<div class="col-lg-4 boxy">
+				{% for f in form %}
+					{% if negotiationRequest == True %}
+						<h5 ><input type="checkbox" name = "Negotiate"> Accept Negotiation?</h5>
+					{% endif %}
+    			<h5 >Your Response: - {{f}}</h5>
+				{% endfor	 %}
+			</div>
+		</div>
+    <input class="btn btn-primary btn-large" type="submit" value="Submit">
+
+  </form>
+	{% if feedback.count %}
+		<h3>Following are the ratings available for the requested user</h3>
+		{% for f in feedback %}
+			<h5 style="text-align:center;">Rating: - {{f.rating}}</h5>
+			<h5 style="text-align:center;">Description: - {{f.description}}</h5>
+		{% endfor %}
+	{% else %}
+		<h5>No ratings available for the requested used</h5>
+	{% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "Owner/owner_base.html" %}
+
+{% block Navigation %}
+	<a class="nav-item nav-link" href="{% url 'Owner:CreateVehicle' %}" class="btn btn-simple">Add Vehicle</a>
+{% endblock %}
+
+{% block ownervehicles %}
+
+<div class="rikhav">
+  <h3>Following is the list of all the Request</h3>
+  <div class="row">
+    {% for request in request_list %}
+      <div class="col-lg-4 boxy">
+        <table>
+          <tr>
+            <td>
+              <h4><a href="{% url 'Owner:RequestDetails' pk=request.pk%}">{{request.vehicle.make.make}} {{request.vehicle.model.makemodel}}</a></h4>
+              <ul>
+                <h6><li>Booking Date: - {{request.bookingDate}}</li></h6>
+                  {% if request.negotiationRequest %}
+                    <h6><li>Negotiation Price: - {{request.negotiationPrice}}</li></h6>
+                  {% else %}
+                    <h6><li>Booking Price: - {{request.price}}</li></h6>
+                  {% endif %}
+              </ul>
+            </td>
+            <td>
+              <img src="{{request.vehicle.image.url}}" alt="" height="70" width="84">
+            </td>
+          </tr>
+        </table>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% extends "Renter/renter_base.html" %}
+
+  {% block renter %}
+
+  <!--vehicle detail renter side when renter select vehicle from all vahicle-->
+
+  <p style="margin-top: 10px;"></p>
+      <h1>Following is the details of the Vehicle</h1>
+      <p style="margin-top: 45px;"></p>
+      <center>
+        <img src="{{vehicle_detail.image.url}}" alt="" height="400" width="600"/>
+      </center>
+
+
+      <p style="margin-top: 20px;"></p>
+
+      <table width="1200">
+        <tr>
+          <td></td>
+          <td>
+            <p style="font-size:30px;">Make : {{vehicle_detail.make.make}}</p>
+          </td>
+          <td> <p>      </p> </td>
+          <td>
+            <p style="font-size:30px;">Model : {{vehicle_detail.model.makemodel}}</p>
+          </td>
+        </tr>
+
+          <tr>
+            <td></td>
+            <td>
+              <p style="font-size:30px;">Vehicle Registration Number : {{vehicle_detail.VehicleRegistrationNumber}}</p>
+            </td>
+            <td> <p>      </p> </td>
+
+            <td>
+              <p style="font-size:30px;">Style : {{vehicle_detail.style.style}}</p>
+            </td>
+          </tr>
+
+            <tr>
+              <td></td>
+              <td>
+                <p style="font-size:30px;">Year : {{vehicle_detail.year}}</p>
+              </td>
+              <td> <p>      </p> </td>
+
+              <td>
+                <p style="font-size:30px;">Color : {{vehicle_detail.color.color}}</p>
+              </td>
+            </tr>
+
+              <tr>
+                <td></td>
+                <td>
+                  <p style="font-size:30px;">Price : {{vehicle_detail.price}}</p>
+                </td>
+                <td> <p>      </p> </td>
+
+                <td>
+                  <p style="font-size:30px;">Security Deposit : {{vehicle_detail.securityDeposit}}</p>
+                </td>
+              </tr>
+
+                <tr>
+                  <td></td>
+                  <td>
+                    <p style="font-size:30px;">Insurance : {{vehicle_detail.insurance}}</p>
+                  </td>
+                  <td> <p>      </p> </td>
+
+                  <td>
+                    <p style="font-size:30px;">EZpass : {{vehicle_detail.EZpass}}</p>
+                  </td>
+                </tr>
+
+                  <tr>
+                    <td></td>
+                    <td>
+                      <p style="font-size:30px;">Description : {{vehicle_detail.description}}</p>
+                    </td>
+                    <td> <p>      </p> </td>
+
+                    <td>
+                      <p style="font-size:30px;">Terms and Conditions : {{vehicle_detail.TermsAndConditions}}</p>
+                    </td>
+                  </tr>
+
+                    <tr>
+                      <td></td>
+                      <td>
+                        <p style="font-size:30px;">Rating : {{vehicle_detail.rating}}</p>
+                      </td>
+                      <td> <p>      </p> </td>
+
+                    </tr>
+      </table>
+
+
+      <form action="{% url 'Booking:CreateBooking' VehicleRegistrationNumber=vehicle_detail.VehicleRegistrationNumber pk=vehicle_detail.pk%}" method="post">
+        {%csrf_token%}
+        <h6 style="font-size:30px;"><input type="checkbox"  onchange="document.getElementById('BookCar').disabled = !this.checked;" /> Agree to Terms and Conditions</h6>
+        <button type="submit" id="BookCar" class="btn btn-primary" disabled>Book Car</button>
+      </form>
+      {% if feedback.count %}
+    		<h3>Following are the ratings available for the requested user</h3>
+    		{% for f in feedback %}
+    			<h5>Rating: - {{f.rating}}</h5>
+    			<h5>Description: - {{f.description}}</h5>
+    		{% endfor %}
+    	{% else %}
+    		<h5>No ratings available for the requested used</h5>
+    	{% endif %}
+  {% endblock %}

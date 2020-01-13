@@ -1,0 +1,19 @@
+{% extends "Owner/owner_base.html" %}
+{% load bootstrap3 %}
+
+{% block Navigation %}
+	<a class="nav-item nav-link" href="{% url 'Owner:OwnerVehicles' %}" class="btn btn-simple">List Vehicles</a>
+{% endblock %}
+
+{% block ownervehicles %}
+<div class="container">
+  <h4>Create A New Vehicle</h4>
+  <form method="POST" action="{% url 'Owner:CreateVehicle' %}" id="groupForm">
+  	{% csrf_token %}
+  	{% bootstrap_form form %}
+    {% buttons %}
+  		<button type="submit" class="btn btn-primary btn-large">Create</button>
+  	{% endbuttons %}
+  </form>
+</div>
+{% endblock %}

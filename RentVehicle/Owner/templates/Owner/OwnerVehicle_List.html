@@ -1,0 +1,60 @@
+{% extends "Owner/owner_base.html" %}
+
+{% block Navigation %}
+	<a class="nav-item nav-link" href="{% url 'Owner:CreateVehicle' %}" class="btn btn-simple">Add Vehicle</a>
+	<a class="nav-item nav-link" href="{% url "Owner:RequestList" %}" class="btn btn-simple">Requests</a>
+	<a class="nav-item nav-link" href="{% url "Booking:OwnerBookingList" %}" class="btn btn-simple">Booking</a>
+{% endblock %}
+
+{% block ownervehicles %}
+<div class="rikhav">
+  <h3>Following is the list of all the Vehicles</h3>
+  <div class="row">
+    {% for vehicles in vehicle_list %}
+      <div class="col-lg-6 boxy">
+        <table>
+          <tr>
+            <td>
+              <h4><a href="{% url 'Owner:VehicleDetails' VehicleRegistrationNumber=vehicles.VehicleRegistrationNumber pk=vehicles.pk%}">{{vehicles.make.make}} {{vehicles.model.makemodel}}</a>
+              <ul>
+                <h6 style="padding-right: 45px;"><li>{{vehicles.VehicleRegistrationNumber}}	</li></h6>
+								<h6 style="padding-right: 45px;"><li>Rental Price: - {{vehicles.price}}	</li></h6>
+								<h6 style="padding-right: 45px;"><li>Security Deposit: - {{vehicles.securityDeposit}}	</li></h6>
+              </ul>
+            </td>
+            <td>
+              <img src="{{vehicles.image.url}}" alt="" height="200" width="240">
+            </td>
+          </tr>
+        </table>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+	<div class="rikhav">
+		<h3>Following is the list of disabled the Vehicles</h3>
+	<div class="row">
+		{% for vehicles in vehicle %}
+			<div class="col-lg-6 boxy">
+				<table>
+					<tr>
+						<td>
+							<h4><a href="{% url 'Owner:EnableVehicle' pk=vehicles.pk%}">{{vehicles.make.make}} {{vehicles.model.makemodel}}</a>
+							<ul>
+								<h6 style="padding-right: 45px;"><li>{{vehicles.VehicleRegistrationNumber}}	</li></h6>
+								<h6 style="padding-right: 45px;"><li>Rental Price: - {{vehicles.price}}	</li></h6>
+								<h6 style="padding-right: 45px;"><li>Security Deposit: - {{vehicles.securityDeposit}}	</li></h6>
+							</ul>
+						</td>
+						<td>
+							<img src="{{vehicles.image.url}}" alt="" height="200" width="240">
+						</td>
+					</tr>
+				</table>
+			</div>
+		{% endfor %}
+	</div>
+
+</div>
+
+{% endblock %}

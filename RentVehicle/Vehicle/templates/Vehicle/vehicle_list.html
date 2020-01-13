@@ -1,0 +1,41 @@
+{% extends "Vehicle/vehicle_base.html" %}
+
+
+{% block vehicles %}
+<div class="filter_form">
+  <form method="POST">
+    {% csrf_token %}
+      <div class="row">
+        {% for f in form %}
+        <div class="col-lg-3 boxy">{{f.label}} {{f}}</div>
+        {% endfor %}
+      </div>
+      <p></p>
+  		<button type="submit" class="btn btn-primary btn-large">Filter</button>
+  </form>
+</div>
+
+
+<p></p>
+{% if vehicle_list.count %}
+  {% for vehicles in vehicle_list %}
+  <table id = 'List_Table'>
+    <tr>
+      <td>
+        <h2><a href="{% url 'Vehicle:VehicleDetails' VehicleRegistrationNumber=vehicles.VehicleRegistrationNumber pk=vehicles.pk%}">{{vehicles.make.make}} {{vehicles.model.makemodel}}</a></h2>
+        <ul id = 'List_Table_Detail'>
+          <h3><li>{{vehicles.VehicleRegistrationNumber}}</li></h3>
+        </ul>
+      </td>
+      <td>
+        <img src="{{vehicles.image.url}}" alt="" height="250" width="300">
+      </td>
+    </tr>
+  </table>
+    {% endfor %}
+  {% else %}
+  <h1>No Vehicles available for the given search criteria</h1>
+
+  {% endif %}
+
+{% endblock %}

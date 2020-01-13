@@ -1,0 +1,46 @@
+{% extends "Booking/renterbooking_base.html" %}
+
+  {% block booking %}
+  <!--booked vehicle details renter side-->
+
+
+      <h1>Following is the details of your booking</h1>
+      <div>
+        <center><img src="{{booking.vehicle.image.url}}" alt="" height="400" width="600"></center>
+
+        <p><p></p></p>
+        <h2 style="text-align:center;">Car Name: - {{booking.vehicle.make.make}}</h2>
+        <h2 style="text-align:center;">Car Model: - {{booking.vehicle.model.makemodel}}</h2>
+        <h4 style="text-align:center;">Booking Date: - {{booking.bookingDate}}</h4>
+        {% if booking.negotiationRequest %}
+          <h4 style="text-align:center;">Negotiation price: - {{booking.negotiationPrice}}</h4>
+        {% else %}
+          <h4 style="text-align:center;">Booking price: - {{booking.price}}</h4>
+        {% endif %}
+        <h4 style="text-align:center;">Request Status: - {{booking.requestStatus}}</h4>
+        <h4 style="text-align:center;">Booking Status: - {{booking.bookingStatus}}</h4>
+      {% if booked %}
+
+        <h4 style="text-align:center;">Payment : - Done</h4>
+
+      {% elif Owneraccepted %}
+        {%if renterRejected%}
+        <h6 style="text-align:center;">
+          <a href="{% url "Booking:SelectPayment" pk=booking.pk %}" style="text-align:center;">
+            <button class="btn btn-primary btn-large" type="submit" name="button" style="text-align:center;">
+              Pay for Booking
+            </button>
+          </a>
+          <p></p>
+          <form method="post">
+            {% csrf_token %}
+            <button class="btn btn-primary btn-large" type="submit" name="button" style="text-align:center;">
+              Cancel Booking
+            </button>
+          </form>
+        </h6>
+
+        {% endif %}
+      {% endif %}
+      </div>
+  {% endblock %}

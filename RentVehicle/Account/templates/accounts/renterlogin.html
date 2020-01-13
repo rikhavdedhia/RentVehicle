@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{# at the terminal, run pip install django-bootstrap4 #}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="jumbotron"">
+  <font style="font-size:50px;" color = "Black">Login</font><p style="margin-top: 40px;"></p><p></p>
+  <form method="POST" action="{%url 'Account:RenterLogIn'%}" class="form">
+    {% csrf_token %}
+    <font color = "Black" for="username">Username</font>
+    <input type="text" id = "username" name="username" placeholder="Enter Username">
+    <p></p>
+    <font color = "Black" for="password">Passowrd</fonty>
+    <input type="password" name="password" id = 'password'>
+    <p></p>
+    {% buttons %}
+      <button type="submit" class="btn btn-primary">Login</button>
+    {% endbuttons %}
+    <p></p>
+    {{error}}
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+<!--log in box-->
+{% block content %}
+<p style="margin-top: 150px;">
+<div class="jumbotron">
+  <font style="font-size:50px;" color = "black">Log In as Renter or Owner</font><p></p>
+  <a href="{%url 'Account:RenterLogIn'%}">
+    <button class="btn btn-primary btn-large" style="margin:5px;" type="button" name="btn btn-success">
+      Renter
+    </button>
+  </a>
+  <a href="{%url 'Account:OwnerLogIn'%}">
+    <button class="btn btn-primary btn-large" style="margin:50px;" type="button" name="btn btn-success">
+      Owner
+    </button>
+  </a>
+
+
+</div>
+</p>
+
+{% endblock %}
